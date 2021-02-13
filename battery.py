@@ -6,8 +6,9 @@ N = 15
 
 while(True):
     battery = psutil.sensors_battery() 
-    percent = battery.percent 
-    if( percent <= N ):    
+    percent = battery.percent
+    plugged_in = battery.power_plugged #check whether charger is plugged in or not 
+    if( percent <= N and not plugged_in):    
         notification.notify( 
             title = "Warning. Battery low", 
             message = str(percent) + "% Battery remaining.\nConnect the charger.", 
